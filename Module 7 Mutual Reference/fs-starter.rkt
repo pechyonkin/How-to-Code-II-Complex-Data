@@ -25,7 +25,16 @@
 (define D5 (make-elt "D5" 0 (list F3)))
 (define D6 (make-elt "D6" 0 (list D4 D5)))
 
+(define (fn-for-element e)
+  (... (elt-name e)                  ; String
+       (elt-data e)                  ; Integer
+       (fn-for-loe (elt-subs e))))   ; ListOfElement
 
+(define (fn-for-loe loe)
+  (cond [(empty? loe) (...)]
+        [else
+         (... (fn-for-element (first loe))     ; Element
+              (fn-for-loe     (rest  loe)))])) ; ListOfElement
 
 
 ;; Functions:
