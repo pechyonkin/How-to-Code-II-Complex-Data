@@ -20,12 +20,7 @@
 
 ;<template from ListOfString>
 
-(define (contains-ubc? los)
-  (cond [(empty? los) false]
-        [else
-         (if (string=? (first los) "UBC")
-             true
-             (contains-ubc? (rest los)))]))
+(define (contains-ubc? los) (contains? "UBC" los))
 
 ;; ListOfString -> Boolean
 ;; produce true if los includes "McGill"
@@ -38,13 +33,15 @@
 
 ;<template from ListOfString>
 
-(define (contains-mcgill? los)
+(define (contains-mcgill? los) (contains? "McGill" los))
+
+
+(define (contains? s los)
   (cond [(empty? los) false]
         [else
-         (if (string=? (first los) "McGill")
+         (if (string=? (first los) s)
              true
-             (contains-mcgill? (rest los)))]))
-
+             (contains? s (rest los)))]))
 
 ;; ====================
 
