@@ -57,11 +57,8 @@
 
 ;<template from ListOfNumber>
 
-(define (squares lon)
-  (cond [(empty? lon) empty]
-        [else
-         (cons (sqr (first lon))
-               (squares (rest lon)))]))
+(define (squares lon) (map2 sqr lon))
+
 
 ;; ListOfNumber -> ListOfNumber
 ;; produce list of sqrt of every number in lon
@@ -72,11 +69,14 @@
 
 ;<template from ListOfNumber>
 
-(define (square-roots lon)
+(define (square-roots lon) (map2 sqrt lon))
+
+
+(define (map2 fn lon)
   (cond [(empty? lon) empty]
         [else
-         (cons (sqrt (first lon))
-               (square-roots (rest lon)))]))
+         (cons (fn (first lon))
+               (map2 fn (rest lon)))]))
 
 
 ;; ====================
