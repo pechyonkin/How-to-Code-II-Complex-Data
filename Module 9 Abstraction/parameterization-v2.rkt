@@ -26,6 +26,7 @@
 (define (contains-mcgill? los) (contains? "McGill" los))
 
 
+;; String (listof String) -> Boolean
 ;; produce true if los includes s
 (check-expect (contains? "UBC" empty) false)
 (check-expect (contains? "UBC" (cons "McGill" empty)) false)
@@ -62,12 +63,13 @@
 
 (define (square-roots lon) (map2 sqrt lon))
 
-
+;; (X -> Y) (listof X) -> (listof Y)
 ;; given fn and (list n0 n1 ...) produce (list (fn n0) (fn n1) ...)
 (check-expect (map2 sqr empty) empty)
 (check-expect (map2 sqr (list 3 4)) (list 9 16))
 (check-expect (map2 sqrt (list 9 16)) (list 3 4))
 (check-expect (map2 abs (list 2 -3 -4)) (list 2 3 4))
+(check-expect (map2 string-length (list "" "UBC" "McGill")) (list 0 3 6))
 
 (define (map2 fn lon)
   (cond [(empty? lon) empty]
@@ -97,6 +99,7 @@
 
 (define (negative-only lon) (filter2 negative? lon))
 
+;; (X -> Boolean) (listof X) -> (listof X)
 ;; given pred and (list e0 e1 ...) produce list of elements for which (pred ei) is true
 (check-expect (filter2 positive? empty) empty)
 (check-expect (filter2 positive? (list 1 -2 3 -4)) (list 1 3))
