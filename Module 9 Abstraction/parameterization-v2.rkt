@@ -97,10 +97,11 @@
 
 (define (negative-only lon) (filter2 negative? lon))
 
-;; given pred and (list n0 n1 ...) produce list of numbers for which (pred ni) is true
+;; given pred and (list e0 e1 ...) produce list of elements for which (pred ei) is true
 (check-expect (filter2 positive? empty) empty)
 (check-expect (filter2 positive? (list 1 -2 3 -4)) (list 1 3))
 (check-expect (filter2 negative? (list 1 -2 3 -4)) (list -2 -4))
+(check-expect (filter2 false? (list false false true)) (list false false))
 
 (define (filter2 pred lon)
   (cond [(empty? lon) empty]
